@@ -3,3 +3,4 @@ git is free software
 git has a mutable index called stage.
 git tarcks changes of files.
 creat a new branch is quick.
+i am a new branch.
