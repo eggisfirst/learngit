@@ -99,12 +99,13 @@ a{
   height: 360px;
   position: absolute;
   overflow: hidden;
-  margin: 0 auto;
+  left: 50%;
+  margin-left: -675.5px;
 }
   .bg_box .img{
     width: 10000px;  
     position: absolute;
-    top: 0;
+    top:0;
     left: 0;
   }
     .img li{ 
@@ -163,7 +164,8 @@ a{
   .main .content{
     width:1000px;
     height: 360px;
-    left: 180px;
+    left: 50%;
+    margin-left: -500px;
     position: absolute;
   } 
     .main .content .list{
