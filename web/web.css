@@ -99,6 +99,7 @@ a{
   height: 360px;
   position: absolute;
   overflow: hidden;
+  margin: 0 auto;
 }
   .bg_box .img{
     width: 10000px;  
