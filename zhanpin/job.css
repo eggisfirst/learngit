@@ -1,0 +1,41 @@
+*{margin: 0;padding: 0;}
+ul{list-style: none;}
+body{background-color: #fefefe;}
+  .top{
+    width: 100vw;
+    display: block;
+  }
+  #content{
+    padding: 4vw;
+  }
+  #content i img{
+    width: 92vw;
+  }
+  .title{
+    font-size: 4.8vw;
+    font-style: normal;
+    color:#333333;
+    font-family: "MicrosoftYaHei-Bold";
+    padding:4vh 0 4vh 0;
+  }
+  .job{
+    font-size: 4.3vw;
+    padding:5.3vh 0 4vh 0;
+    color: #333333;
+  }
+  .qur{
+    font-size: 4.3vw;
+    color: #333333;
+    padding:6.7vh 0 4vh 0;
+  }
+  #content li{
+    font-family: "MicrosoftYaHei";
+    color: #666666;
+    font-size: 3.2vw;
+    line-height: 6.4vw;
+  }
+  #content li img{
+    width: 3.2vw;
+    padding-right: 2.1vw;
+  }
+
