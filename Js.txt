@@ -1,1 +1,160 @@
 重头开始学习js
+
+
+
+一、JS的特点
+单线程：同时只能做一件事情，按顺序
+解释性语言：翻译一行执行一行
+是一门动态语言	
+
+二、数据类型
+原始值：number string Boolean undefined null
+引用值：array object function ...data regexp
+
+string:加上引号的都是字符串  ''引号没东西是空串，' '引号空格跟空串不同
+Boolean:只有true和false两个值
+undefined:声明变量没有赋值
+null：为对象占位，但是里面是空的。平时用来覆盖原有的值使之成为空值
+
+原始值不可以改变，例如var a = 20; a = 30 ;只是把a与20之前的联系切断，20仍然存在空间里。
+
+三、JS语法规则
+1.语句后面结束用;分号，特殊的只有函数、for循环、if判断不需要。
+2.任何代码两边应该有空格： var c = a + b;
+ 
+四、运算
+优先级赋值 = 优先级最弱，运算符比它高，先运算后赋值。（）优先级最高。
++：数学运算、字符串连接（只要有一边是字符串，都会变成字符串）
+%：求余数
+++：每次+1，a++先执行a再++，++a是先++再执行a
++=：每次加自身。a+=1就是a=a+1
+比较符运算：< > ==  比较完返回的是true或者false
+字符串跟字符串也可以比较，是用ascII码。字符串跟数字比较，字符串会转为数字
+==等于，也是一个判断语句。undefined == null 返回true
+
+与运算符&&：
+例如var a = 1 && 2  先判断1的布尔值是true还是false,true就继续往下看，直到false输出假的值。
+undefined null NaN "" false 的布尔值都是false
+可以作为一个判断也叫做短路语句，
+A && B  
+如果A有值就执行B，如果A是空的返回undefined，是false，不执行B。
+
+或运算符||：
+有真输出真，没有继续往下看。
+用来写兼容性代码：var event = e || window.event
+
+非运算符!：
+把值返回布尔值再取反：!a  a是true取反就是false
+!!非非：就是转为布尔值
+
+五、if条件语句
+if(条件){
+  执行语句
+}else if(满足前一个条件这个就不会执行，只有条件互斥再用。){
+  执行语句
+}else{
+  以上的补集，除了...以外的
+}
+条件是一个判断，返回为true执行，false不执行
+例如 a && b，同时满足a和b才执行。a || b，只要满足其中一个就可以执行
+
+
+六、for循环
+for(var i = 0; i < 10; i++){
+     循环体
+}
+先执行i=0，这一条可以放在外面。
+再执行if(i < 10)｛执行循环体｝，if里面也是判断。
+最后i++，可以放在循环体里面。
+
+while循环是for循环的简化版，很少用
+while(只需要写一句判断){
+
+}
+
+七、switch(n){
+     case 1:
+	    执行语句;
+		break;
+	 case 2:
+	    执行语句;
+		break;
+     case 3:
+	    执行语句;
+		break;
+}
+switch是当结果完全相等的时候使用，1是结果，当n===1的时候执行第一个。switch的缺点
+就是只要执行的第一个，没有写break就会一直往下执行，所以当有写执行结果一样的时候
+switch(n){
+     case 1:
+	 case 2:
+	    执行语句;
+		break;
+     case 3:
+	    执行语句;
+		break;
+}
+可以写在一起，减少偶合。
+
+break用于终止循环，假设需要循环X圈，第X圈的时候用if判断，里面写break!
+
+continue用于终止本次循环开始下次循环
+for(var i = 0; i < 10; i++){
+     continue;
+	 i+= 1
+}
+continue后面的语句不会执行，又回到判断语句。
+
+数组
+arr[i] 可以查看数组里面的值
+arr[0] = 1 可以改变数组的值
+
+对象!!!
+就是用来提取对象里面的键值对。
+var a = { name : chen , b : 10}
+可以得到a.name的值，也可以赋值 a.name = "he"
+
+编程形式
+面向过程：机械化第一步怎么做  第二步  第三步
+面向对象：你做什么  另一个人做什么  分工
+
+typeof（）可以返回数据类型：number string Boolean object undefined function
+唯一一种当a没有定义时候不会报错。typeof(a)返回 undefined
+数组和null都是返回object
+
+九、显示类型转换
+1.Number()
+null转为0  undefined转为NaN（not a number）非数字(字符串)只能转为NaN
+2.parseInt()
+变成整型：123.1转为123   但是true转为NaN 123abc转为123看到非数字的时候停止
+带有两个参数parseInt(a,radix)
+以目标进制为基底转为10进制。radix取值范围2-36
+假设parseInt(19,16)，把19以16进制为基底转为10进制
+3.parsefloat()
+浮点型，在看到点后面非数字位的时候停止。123.123abc转为123.123
+4.string()
+5.Boolean()
+6.toString()   null undefined不可用  demo.toString()
+ 
+ 十、隐式类型转换
+ isNaN()里面先用Number()，再判断是否NaN,再与NaN比较，返回true或者false
+ + - 正负* / % ++ -- > < >= <=都是用Number()转换为数字
+ 加号特殊 1 + "1" 只会输出11  但是 2*"11"会输出22
+ 
+ 十一、不发生任何类型转换
+ ===绝对等于   !==绝对不等于
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+
+
