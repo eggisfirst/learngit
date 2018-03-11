@@ -81,8 +81,18 @@ function jc(n){
  先执行GO再执行AO!!!
  
  
- 
- 
+例题：
+     var str = false + 1;
+     document.write(str);
+     var demo = false == 1;
+     document.write(demo);
+     if(typeof(a) && -true + (+undefined) + ""){
+        document.write("good")
+     }
+     if(11 + '11'*2 == 33){
+       document.write('good')
+     }
+     !!" " + !!'' - !!false || document.write('OH MY GOD!!')
  
 
 
