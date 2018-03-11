@@ -1,0 +1,100 @@
+最重要的函数!!!!!
+
+
+1.函数声明
+function test(){}
+新的规则：谷歌里if判断里面不能声明函数!!!
+
+2.函数表达式（命名函数表达式、匿名函数表达式）
+var test = function sum(){}
+var test = function (){}
+两者区别是test.name不同
+
+3.函数的参数
+function test (a,b){}
+test(1,2,3)
+a、b为形参  1 2 3为实参
+两个参数数量可以不等，当形参未知，实参可以用数组表示：arguments为一个类数组
+arguments.length为实参的长度，test.length为形参长度
+两者存在映射关系，当一个改变另一个也跟着改变。
+特殊!!!!当实参数量小于形参数量，不存在映射关系。例如a跟arguments[0]
+
+4.终止函数
+return  
+用于终止函数或者返回值(相当于隐式转换)  例如：return +"adb"
+
+递归：先找规律后找出口
+function jc(n){
+   if( n == 1 ){
+	 return 1
+   }
+   return n * jc(n - 1)
+}
+求阶层，是典型的递归。缺点是运行慢，先执行的最后输出，优点是代码简洁。
+ 
+ 5.全局变量
+ 定义在外面的变量
+ 
+ 6.局部变量
+ 定义在函数里面的变量，当函数里面没有定义的时候可以用全局变量
+ 里面的可以用外面的，反之不可以。最里面的权限最大。两个函数之间不可以拿对方的变量。
+ 
+ 
+ 
+ 
+ JS运行三部曲
+ 1.语法分析：通篇扫描有没有低级语法错误(缺少一个括号)
+ 2.预编译(重点!!!)：解决执行顺序
+ 3.解释执行
+ 
+ 预编译
+ 1.未经声明的变量就赋值，变量归window所有。window是一个对象，里面存储变量。
+ 例如： function test(){
+          var a = b = 123; 	   
+       }
+	   test();
+先把123赋值给b，b未声明，所以b只能给window。再把b赋值给a。
+在全局里面console.log(a)报错，console.log(b)输出123	   
+ 2.一切声明的全局变量都是window的，window相当于全局的域
+ window{a:1,b:2,...} window.a可输出a的值
+ 
+ 预编译四步曲
+ 1.创建AO对象
+ 2.找形参和变量声明，赋给AO对象，值为undefined，如有重复只写一个
+ 3.将实参和形参统一
+ 4.在函数体里面找函数声明，值赋给函数（优先级最高可覆盖前面的值）
+ 例如：
+ function fn(a){
+    console.log(a);
+	var a = 123;
+	console.log(a);
+	function a(){};
+	console.log(a);
+	var b = function b(){};
+	console.log(b);
+	function d(){};
+ }
+ fn(1);
+ 
+ AO对象是函数里面的对象，全局有GO(global)对象，步骤如上，少了第三步。
+ GO相当于window，AO相当于函数的仓库，里面存放变量和值。
+ 先执行GO再执行AO!!!
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
