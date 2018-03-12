@@ -1,0 +1,52 @@
+1.对象
+对象是引用值，一切对象都有属性和方法。函数、数组可以称为对象。
+原始值本身不可以有属性方法(string number boolean null undefined),但是可以转化为对象
+除了null undefined
+
+转化对象要加new
+var num = new Number(123)  这时候num就是一个对象，可以加属性，num.abc = a 同时也可以作为
+                           数字运算 num*2 = 246，对象不变
+var str = new String('abcd')
+var bol = new Boolean('true') 						   
+
+2.对象的增、删、改、查
+obj.name = " "  赋值就是增
+obj.name = " "  也可以改值
+delete obj.name 就是删掉 
+
+3.对象创建方法
+①var obj = {}   plainObject  叫对象字面量或者对象直接量
+②构造函数 
+ 1>系统自带的构造函数  Object()  Array()  Nember()
+ var obj = new Object()  new+构造函数返回一个对象
+ 2>自定义  大驼峰命名，首字母都大写
+ function Car(){
+    // （var this = {}）
+    this.name = name;
+	this.color = color;
+	this.health = 100;
+	this.run = function(){
+	     this.health--;
+	}
+	//（return this）
+ }                         --->相当于批量生产了很多一样但是又各自独立的个体。
+ var car = new Car(name,color)  可以传参数
+ 
+ 构造对象内部的原理   加new才产生这个过程!!!
+ 1.在函数提最前面隐式加 var this = {}    --->相当于AO{this{}}
+ 2.执行 this.xxx = xxx
+ 3.隐式return this     --->可以用显示return{}对象(函数 数组)代替隐式，但是不能使用原始值
+                           return 123，系统会自动忽略继续return  this
+ 
+ 4.包装类
+ var str = 'abcd';
+//系统自动new String('abcd').length = 2  然后delete 
+ str.length = 2 ;                                   --->因为str没有length这个属性
+ console.log(str); abcd         
+//系统再次new String('abcd').length 
+ console.log(str.length);4  这次访问的是系统的new string        
+ 
+ 
+ 
+ 
+ 
