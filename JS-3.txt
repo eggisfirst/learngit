@@ -1,0 +1,43 @@
+条件判断? A : B
+条件判断true返回A,false返回B
+
+1.数组
+创建方法  var arr = []  /  var arr = new Array()
+区别 ：当 new Array(10) 只传10一个参数，系统会把10当成数组的长度，每一位为undefined。
+
+2.可以改变数组的方法： push() pop() unshift() shift() reverse() splice() sort()
+splice(第几位开始截取，截取的长度，在切口加新数据)
+
+第一位参数可以是负数，负数就从末尾开始
+原理就是判断是正数就是 position = position + 0   ---> 2 + 0
+              负数就是 position = position + this.length  ---> -2 + 4 倒数第二位也是正数第三位
+var splice = function(position,,){
+	position += position > 0 ? 0 : this.length
+}
+
+可以截取0位，用来实现插入数值~~~~!!!
+
+sort()正常用的话是按字符串顺序来排，所以留了一个接口，在括号可以写函数用来数字排序
+原理 1.必须写形参
+     2.看返回值    当返回负数，前面的数放后面  正数，后面的数放前面 0不动
+arr.sort(function(a,b)){
+	if(a>b){              ---->升序  按照冒泡排序法
+	return 1                   简化，a-b>0  return a-b  a-b<0 return a-b	
+	}else{                ---->return a-b
+	return -1              降序就是  return  b-a
+	}	
+}
+把有序的数组变成无序的话，使每次return的数未知。
+return Math.random() - 0.5
+
+3.不可以改变数组的方法
+concat() var c = a.concat(b)  ---把a数组跟b数组拼起来用c接收，a b不改变
+slice(从该位截取，截取到该位) ---什么都不写，整个数组截取用一个变量接收
+join()   var c = a.join('!')  ---把!插到每个数字中间并返回字符串形式
+                                  相对应的是split()返回数组形式，里面的值还是字符串
+
+
+
+
+	 
+

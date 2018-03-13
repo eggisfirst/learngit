@@ -46,6 +46,96 @@ delete obj.name 就是删掉
 //系统再次new String('abcd').length 
  console.log(str.length);4  这次访问的是系统的new string        
  
+ 5.原型
+ 定义了构造函数构造出来的对象的公共祖先，是function对象的一个属性。
+ 
+ function Person(){}
+ var person = new Person()
+ Person出生的时候就有Person.prototype这个属性，是一个空的对象
+ 一个对象有自己的属性也有原型的属性，如果自己身上没有会去原型上找
+ 创建person的时候，隐式属性__proto__：Person.prototype出现，当手动更改__proto__指向，
+ person的原型不再是Person.prototyoe
+ 原型可以形成原型链，终端是Object.prototyoe，例外：var obj = Object.creat(null)里面不存在__proto__
+ 
+ 方法的重写
+ 和原型链终端名字一样但功能不同
+ Object.prototyoe.toString()  终端的方法
+ Number.prototyoe.toString()  电脑自身重写的方法
+ Array.prototyoe.toString()
+ 我们也也可以在原型链上修改这个方法
+ Object.prototyoe.toString= function () {
+		return 'haha'
+ }
+ var obj = {} ; 
+ obj.toString()；
+ Object.prototyoe.toString.call([])  call里面的数据会调用toString这个方法，返回里面的数据类型
+ 
+ 6.call/apply
+ 区别是call需要把实参按形参个数传进去，apply需要传一个数组，把参数用数组形式传进去。
+function Person(name,age){
+	this.name = name;     ---> obj.name
+	this.age = age;	      ---> obj.age
+}
+var person = new Person('chen',100)
+var obj = {};
+Person.call(obj,name,age)
+call就是把函数的this指向都变成obj，相当于obj调用Person()这个函数
+借用别人的方法来构造自己的属性。但是原型并没有复制过来。
+
+7.继承  圣杯模式
+var inherit = (function () {
+	  var F = function(){};                    --->使用了闭包，把F函数返回出去。
+	  return function(Target,Origin){
+		F.prototype = Origin.prototype;
+		Target.prototype = new F();
+		Target.prototype.constuctor = Target;
+		Target.prototype.uber = Origin.prototype;
+	  }
+  }())
+ Father.prototype.name = 'chen';
+     function Father(){}
+     function Son(){}             
+     inherit(Son,Father)
+     var son = new Son()
+     var father = new Father()
+
+Son.prototyoe ---> new F() ---> F.prototyoe == Father.prototyoe 
+所以Son.prototyoe改变不影响Father.prototyoe改变
+ 
+ 小知识点：
+ 8.属性拼接
+ 查找属性原本是 obj.name ---> obj['name']
+ 会有一个隐式转化，先把属性名转成字符串形式来查找。
+ 想把属性名跟数字拼接，就可以用this['name' + num]
+ 
+ 9.遍历对象
+ var obj = {};
+ for(var prop in obj){
+   if(obj.hasOwbProperty){   ---->判断这个变量是不是自己的，为了不拿原型上的属性
+	console.log(prop)
+	console.log(obj[prop])
+ }}
+obj-->要遍历的对象，prop是把遍历出来的存储变量，设任何值
+
+10. A instanceof  B  判断A对象的原型链上有没有B的原型，有返回true没有false
+
+区分数组和对象的方法
+1.X.constuctor  数组会返回array  对象返回object
+2.X instanceof Array 是数组返回true
+3.Object.prototyoe.toString.call(X)  返回[Object Array/Object]
+
+11.this  !!!
+在预编译中AO对象产生包含 this:window  指向window，而在全局里this也指向window
+只有没有定义this，都是指向window
+
+
+
+
+
+
+
+ 
+ 
  
  
  

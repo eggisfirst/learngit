@@ -171,6 +171,42 @@ function(){}函数声明不能被()执行，但是(function a(){})可以，括�
 	
 闭包的作用：函数累加器、可作缓存、可实现封装，属性私有化、模块化开发，防止污染全局变量
 
+私有化变量
+    function Deng(name,wife){
+      var perwife = 'chen';
+	  
+      this.name = name;
+      this.wife = wife;
+      this.divorce = function(){
+        this.wife = perwife;
+      }
+      this.changeprewife = function(target){
+        perwife = target;
+      }
+      this.sayprewife = function(){
+        console.log(perwife);
+      }
+    }
+    var deng = new Deng('deng','liu')
+因为new把构造函数内部this的属性返回到对象里面，方法产生的执行期上下文也返回出来，Deng
+的AO，产生了闭包，prewife变成deng的私有化变量，不能通过deng.prewife访问，但是可以用
+deng里面的方法操作。
+
+模块化开发，防止污染全局变量
+ var init = (function(){
+          var name = 123;
+          function callName(){
+            console.log(name)
+          }
+          return function(){
+            callName()
+          }
+       }())	
+--->init = function (){ callName()}
+功能可以复用的，用函数封装，下次直接调用，不用考虑是否会污染全局变量。
+里面的函数形成个闭包，留出一个函数作为接口传给init，这个函数执行里面的函数作为
+中转，当调用init时就会启用接口里面的函数。这个函数使用的变量是私有化变量，不会
+污染全局。
 
 
 
