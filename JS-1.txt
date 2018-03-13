@@ -174,7 +174,11 @@ function(){}函数声明不能被()执行，但是(function a(){})可以，括�
 私有化变量
     function Deng(name,wife){
       var perwife = 'chen';
-	  
+	  // var this = {
+	  //    	changeprewife : function,
+	  //		sayprewife : function,
+	  //		divorce : function
+	  }
       this.name = name;
       this.wife = wife;
       this.divorce = function(){
@@ -186,11 +190,12 @@ function(){}函数声明不能被()执行，但是(function a(){})可以，括�
       this.sayprewife = function(){
         console.log(perwife);
       }
+	  //return this   ----> 返回这个对象，把对象上的方法也返回，相当于把内部函数保存在外部。
     }
     var deng = new Deng('deng','liu')
-因为new把构造函数内部this的属性返回到对象里面，方法产生的执行期上下文也返回出来，Deng
-的AO，产生了闭包，prewife变成deng的私有化变量，不能通过deng.prewife访问，但是可以用
-deng里面的方法操作。
+
+因为new完了返回这个对象，对象上方法产生的执行期上下文也返回出来，Deng的AO，与Deng产生了闭包，
+prewife变成deng的私有化变量，不能通过deng.prewife访问，但是可以用deng里面的方法操作。
 
 模块化开发，防止污染全局变量
  var init = (function(){

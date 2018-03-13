@@ -21,7 +21,7 @@ delete obj.name 就是删掉
  var obj = new Object()  new+构造函数返回一个对象
  2>自定义  大驼峰命名，首字母都大写
  function Car(){
-    // （var this = {}）
+    // （var this = {}） var this = {__proto__:Car.prototyoe,name:'',color:''}
     this.name = name;
 	this.color = color;
 	this.health = 100;
@@ -43,19 +43,28 @@ delete obj.name 就是删掉
 //系统自动new String('abcd').length = 2  然后delete 
  str.length = 2 ;                                   --->因为str没有length这个属性
  console.log(str); abcd         
-//系统再次new String('abcd').length 
+//系统再次new String('abcd').length   这个跟上面的不是同一个对象!!!
  console.log(str.length);4  这次访问的是系统的new string        
  
  5.原型
- 定义了构造函数构造出来的对象的公共祖先，是function对象的一个属性。
- 
+ 任何一个函数都有一个属性叫prototype，只有构造函数的原型能供构造出来的对象使用方法和属性。
+ 在构造函数里面才有意义。
  function Person(){}
  var person = new Person()
  Person出生的时候就有Person.prototype这个属性，是一个空的对象
  一个对象有自己的属性也有原型的属性，如果自己身上没有会去原型上找
- 创建person的时候，隐式属性__proto__：Person.prototype出现，当手动更改__proto__指向，
+new Psrson产生person的时候产生的this里面就有隐式属性__proto__：指向Person.prototype，当手动更改__proto__指向，
  person的原型不再是Person.prototyoe
- 原型可以形成原型链，终端是Object.prototyoe，例外：var obj = Object.creat(null)里面不存在__proto__
+ 原型可以形成原型链，终端是Object.prototyoe，例外：var obj = Object.create(null)里面不存在__proto__
+ var demo = {
+     color : 'red'，
+ }
+ var obj = Object.create(demo)
+ ----> obj = {
+			__proto__:demo
+ }
+ Object.create()  使obj的原型变成demo
+ obj.color  --> red 当obj想改color时候就会在自身添加color这个属性，不影响原型。
  
  方法的重写
  和原型链终端名字一样但功能不同
@@ -129,8 +138,9 @@ obj-->要遍历的对象，prop是把遍历出来的存储变量，设任何值
 只有没有定义this，都是指向window
 
 
-
-
+一旦经历了全局里var的操作，所得出的属性，在window上，这种属性叫不可配置的属性。
+这种属性delete不掉!!!!
+或者立即执行函数，传形参相当于var x
 
 
 
