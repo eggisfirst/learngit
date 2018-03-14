@@ -1,3 +1,4 @@
+数组
 条件判断? A : B
 条件判断true返回A,false返回B
 
@@ -36,8 +37,62 @@ slice(从该位截取，截取到该位) ---什么都不写，整个数组截取
 join()   var c = a.join('!')  ---把!插到每个数字中间并返回字符串形式
                                   相对应的是split()返回数组形式，里面的值还是字符串
 
+4.类数组
+属性要为数字，必须有length，最好加push
+Array.prototype.push = function (a) {
+boj[obj.length] = a;
+obj.length ++;
+}   push的运算原理
+obj = {
+  '2' : 'a',
+  '3' : 'b',  --->   '3' : 'c'
+   length : 2,    --->  3
+   push : Array.prototype.push，
+   splice:Array.prototype.splices
+}
+obj.push( 'c')   splice可以转为数组格式
+类数组既有对象又有数组的属性！！！要遍历所有的属性
+for(var prop in obj){
+console.log(obj[prop])
+}
+
+5.try{
+console.log('a');
+console.log(b)
+console.log('c')
+}catch(e){
+console(e.name + ''+e.message)
+}
+console.log('d')
+在try里面报错的报错后的程序不运行，在try外面的程序照样执行
+b报错，c停止。d执行。错误信息会返回e打印出来
+
+6.error报错信息
+RefermenceError   ---没定义就使用
+TypeError   ---操作数据类型错误
+SyntaxError  ---低级语法错误
+UriError  ----
+
+ES5严格模式
+'use strict'  可以写在开头，也可以写局部，函数的顶端。
+与ES3.0的不同
+this在局部函数的预编译不再是指向window，赋什么就是什么
+变量赋值必须声明，重复赋值不允许（但不报错）
+arguments.callee  function.caller不可以使用
+with(){}不可以使用
+with(obj){}是用来改变当前对象的作用域链，使obj的AO排在顶端，
+这样使用降低了效率。
+
+7.如for  if 循环执行体为空，{}可以不用写，直接；
+判断参数有没有意义  (e && e.nodeType!= 1)
 
 
 
-	 
+
+
+
+
+
+
+
 

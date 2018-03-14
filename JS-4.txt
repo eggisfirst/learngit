@@ -1,0 +1,74 @@
+DOM
+操作Html xml的方法
+
+一切系统生成的成组的都是类数组，除了Id以外的都是一组
+document代表整个文档，html是根标签
+查
+<div id = "only"></div>
+var div = document.getElementById('only')
+var div = document.getElementsByTagName('div')[0]  凡是标签是div的都以类数组方式返回
+var div = document.getElementsByClassName('') ie8以及以下版本没有这个
+var div = document.getElementsByName('')  表单、表单组件、img、iframe使用
+getElementsByTagName('*')   选择所有标签
+
+document.body  ---body标签
+document.head      head标签
+document.documentElement    html标签
+
+
+1.遍历节点树：
+节点：元素--1、属性--2、文本--3、注释--8、document--9
+parentNode   父节点  顶端是document
+childNodes   子节点们
+firstChild       第一个子节点
+lastChild
+nextSibling    下一个兄弟节点
+previousSibling  前一个兄弟节点
+2.遍历元素节点树
+parentElement  元素父节点，顶端是html
+children      除了这个以外的都是不兼容ie9及以下
+firstElementChild
+lastElementChild
+nextElementSibling
+previousElementSibling
+3.节点属性
+nodeName 元素标签名
+nodeValue 文本节点或者注释节点的文本内容
+nodeType   该节点的类型，只读
+attributes  Element节点的属性集合
+4.方法
+getElementsByTagName方法定义在了Docunment.prototype和Element.prototype上
+所以可以用
+var div = document.getElementsByTagName('div')[0]; 
+var span = div.getElementsByTagName('span')[0];
+
+增
+var div = document.createElement('div')  创建标签
+var text = document.createTextNode('123')
+var comment = document.createComment('写内容')
+document.createDocumentFragment()
+
+插
+div.appendChild(span)   ---剪切操作  span插入到div里面
+div.insertBefore(a,b)      ---在div中插入a，在b之前
+
+删
+div.removeChild(i)    ----剪切出来
+child.remove()          ----删掉
+
+
+替换
+div.replaceChild(new,origin)  
+
+元素节点的属性  Element
+div.innerHTML   不添加属性是取div里面的内容
+div.innerHTML = '123'  123覆盖原有的内容
+div.innerHTML+= '456'  先取值再加456赋给自己
+还可以写<p style="color:red"></p>
+div.innerText     修改文本（除非里面只有文本），读取文本
+
+节点的方法
+div.setAttribute('id','only')  设置属性名称值，行间属性，可以是没有的属性值，为了统计数据~~
+div.getAttribute('id')           属性值
+
+
