@@ -10,7 +10,7 @@ $(function(){
     var liS=''
     for(i=0;i<temP.length;i++){
     var lI=
-    '<li id="'+temP[i].id+'">'+
+    '<li id='+temP[i].id+'>'+
     '<div class="li_1">'+
     '<div class="p1">'+temP[i].jobTitle+'</div>'+
     '<div class="p2">'+temP[i].salary+'</div>'+
@@ -25,6 +25,11 @@ $(function(){
     }  
     $(".num").empty().prepend(liS)
     $("#more").empty()    
+    $("li").click(function(){
+        // console.log($(this).attr("id"))
+        var id1=$(this).attr("id")       
+        location.href="job.html"+"?id="+id1
+        })  
     })
     })  
    
